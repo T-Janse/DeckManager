@@ -1,4 +1,4 @@
-package com.deckmanager.deckmanager.adapter.in.web;
+package com.deckmanager.deckmanager.adapter.in;
 
 import com.deckmanager.deckmanager.adapter.out.mtg_api.MtgApiService;
 import com.deckmanager.deckmanager.domain.model.Card;

@@ -14,7 +14,7 @@ import java.util.List;
 public class CardDto {
     private String name;
     private String manaCost;
-    private double cmc;
+    private int cmc;
     private List<String> colors;
     private List<String> colorIdentity;
     private String type;

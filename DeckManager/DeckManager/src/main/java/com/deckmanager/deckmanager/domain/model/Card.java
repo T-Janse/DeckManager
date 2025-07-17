@@ -69,6 +69,7 @@ public class Card {
         }
 
         this.manaCost = new HashMap<>(Map.of(
+            Mana.COLORLESS, colorLess,
             Mana.RED, red,
             Mana.GREEN, green,
             Mana.BLUE, blue,

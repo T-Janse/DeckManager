@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public class MtgApiService implements MtgCardService {
-    private final String baseUrl = "https://api.magicthegathering.io/v1/cards";
+    private final String baseUrl = "https://api.magicthegathering.io/v1";
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override

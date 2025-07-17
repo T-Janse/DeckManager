@@ -1,28 +1,30 @@
 package com.deckmanager.deckmanager.domain.model;
 
 
+import com.deckmanager.deckmanager.adapter.in.exceptions.IncorrectDeckFileLayout;
 import com.deckmanager.deckmanager.domain.model.enums.DeckArchetype;
+import com.deckmanager.deckmanager.domain.model.enums.Language;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.*;
 
+@Getter
+@Setter
 public class Deck {
-    @Getter
     private UUID id;
     private String name;
-    private List<String> cards;
+    private HashMap<String, Integer> cardNames;
     private DeckArchetype archetype;
+    private Language language;
 
-    public Deck(String name, List<String> cards, DeckArchetype archetype) {
-        this.name = name;
-        this.cards = cards;
-        this.archetype = archetype;
-    }
-
-    public Deck(String name, DeckArchetype archetype) {
+    public Deck(String name, DeckArchetype archetype, Language language) {
         this.name = name;
         this.archetype = archetype;
-        cards = new ArrayList<>();
+        cardNames = new HashMap<>();
     }
 
+    public void addCard(int count, String name){
+        cardNames.put(name, count);
+    }
 }
