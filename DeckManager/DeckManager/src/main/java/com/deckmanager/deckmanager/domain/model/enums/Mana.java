@@ -1,4 +1,4 @@
-package com.deckmanager.deckmanager.domain.model;
+package com.deckmanager.deckmanager.domain.model.enums;
 
 public enum Mana {
     RED,

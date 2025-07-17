@@ -8,7 +8,7 @@ import java.util.*;
 
 @Repository
 public class DeckRepositoryJpa implements DeckRepository {
-    private final Map<UUID, Deck> db = new HashMap<>(); // temporary memory DB
+    private final Map<UUID, Deck> db = new HashMap<>();
 
     @Override
     public void save(Deck deck) {

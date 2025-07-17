@@ -13,7 +13,8 @@ public class DeckController {
         this.deckUseCase = deckUseCase;
     }
 
-    @PostMapping
+    //TODO realize endpoint to upload deck by textfile
+    @PostMapping("/upload_file")
     public UUID upload(@RequestBody String deckText) {
         return deckUseCase.upload(deckText);
     }
