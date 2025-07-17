@@ -36,6 +36,13 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+tasks.register('copyJavadoc', Copy) {
+    dependsOn javadoc
+    from javadoc.destinationDir
+    into "$projectDir/docs"
+}
+
+
 //tasks.named('test') {
 //    useJUnitPlatform()
 //}
