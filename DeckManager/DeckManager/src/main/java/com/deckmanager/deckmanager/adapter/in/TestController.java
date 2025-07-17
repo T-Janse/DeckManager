@@ -17,7 +17,7 @@ public class TestController {
 
     @GetMapping("/card_call")
     public String sayHello() {
-        Optional<Card> result = mtgApiService.getCardsByName("Ajani", Language.FRENCH);
+        Optional<Card> result = mtgApiService.getCardByName("Ajani", Language.FRENCH);
         return result.get().getName();
     }
 

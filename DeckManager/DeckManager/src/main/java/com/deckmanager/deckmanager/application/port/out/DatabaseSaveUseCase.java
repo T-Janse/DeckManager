@@ -4,7 +4,7 @@ import com.deckmanager.deckmanager.domain.model.Deck;
 
 import java.util.UUID;
 
-public interface DeckRepository {
+public interface DatabaseSaveUseCase {
     void save(Deck deck);
     Deck findById(UUID id);
 }

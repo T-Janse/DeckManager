@@ -3,8 +3,8 @@ package com.deckmanager.deckmanager.application.port.service;
 import com.deckmanager.deckmanager.adapter.in.exceptions.IncorrectDeckFileLayout;
 import com.deckmanager.deckmanager.adapter.out.mtg_api.MtgApiService;
 import com.deckmanager.deckmanager.application.port.in.UploadDeckUseCase;
-import com.deckmanager.deckmanager.application.port.out.DeckRepository;
-import com.deckmanager.deckmanager.application.port.out.MtgCardService;
+import com.deckmanager.deckmanager.application.port.out.DatabaseSaveUseCase;
+import com.deckmanager.deckmanager.application.port.out.MtgApiRetrievalUseCase;
 import com.deckmanager.deckmanager.domain.model.Card;
 import com.deckmanager.deckmanager.domain.model.Deck;
 import com.deckmanager.deckmanager.domain.model.enums.DeckArchetype;
@@ -15,18 +15,18 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class DeckService implements UploadDeckUseCase, MtgCardService {
-    private final DeckRepository repo;
+public class DeckService implements UploadDeckUseCase, MtgApiRetrievalUseCase {
+    private final DatabaseSaveUseCase repo;
     private final MtgApiService mtgApiService;
 
-    public DeckService(DeckRepository repo) {
+    public DeckService(DatabaseSaveUseCase repo) {
         this.repo = repo;
         this.mtgApiService = new MtgApiService();
     }
 
     @Override
     public UUID upload(String deckText, String commander, Language lang) throws IncorrectDeckFileLayout {
-        Card commanderCard = getCardsByName(commander, lang).orElseThrow(IncorrectDeckFileLayout::new);
+        Card commanderCard = getCardByName(commander, lang).orElseThrow(IncorrectDeckFileLayout::new);
         DeckArchetype archetype = DeckArchetype.manaCostToArchetype(commanderCard.getManaCost());
         Deck deck = new Deck(commander, archetype, lang);
         deckText.lines().forEach(line -> {
@@ -51,7 +51,7 @@ public class DeckService implements UploadDeckUseCase, MtgCardService {
     }
 
     @Override
-    public Optional<Card> getCardsByName(String name, Language lang) {
-        return mtgApiService.getCardsByName(name, lang);
+    public Optional<Card> getCardByName(String name, Language lang) {
+        return mtgApiService.getCardByName(name, lang);
     }
 }

@@ -1,7 +1,7 @@
 package com.deckmanager.deckmanager.adapter.out.mtg_api;
 
 import com.deckmanager.deckmanager.adapter.out.mtg_api.dto.MtgApiResponse;
-import com.deckmanager.deckmanager.application.port.out.MtgCardService;
+import com.deckmanager.deckmanager.application.port.out.MtgApiRetrievalUseCase;
 import com.deckmanager.deckmanager.domain.model.Card;
 import com.deckmanager.deckmanager.domain.model.enums.Language;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +11,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Optional;
 
 @Service
-public class MtgApiService implements MtgCardService {
+public class MtgApiService implements MtgApiRetrievalUseCase {
     private final String baseUrl = "https://api.magicthegathering.io/v1";
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    public Optional<Card> getCardsByName(String name, Language lang) {
+    public Optional<Card> getCardByName(String name, Language lang) {
         String url = baseUrl + cardUrl + "?name=" + name;
 
         try {

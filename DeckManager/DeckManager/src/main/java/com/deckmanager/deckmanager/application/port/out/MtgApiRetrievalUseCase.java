@@ -5,7 +5,7 @@ import com.deckmanager.deckmanager.domain.model.enums.Language;
 
 import java.util.Optional;
 
-public interface MtgCardService {
+public interface MtgApiRetrievalUseCase {
     String cardUrl = "/cards";
-    Optional<Card> getCardsByName(String name, Language lang);
+    Optional<Card> getCardByName(String name, Language lang);
 }

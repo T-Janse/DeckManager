@@ -1,7 +1,6 @@
 package com.deckmanager.deckmanager.domain.model;
 
 
-import com.deckmanager.deckmanager.adapter.in.exceptions.IncorrectDeckFileLayout;
 import com.deckmanager.deckmanager.domain.model.enums.DeckArchetype;
 import com.deckmanager.deckmanager.domain.model.enums.Language;
 import lombok.Getter;
@@ -22,6 +21,10 @@ public class Deck {
         this.name = name;
         this.archetype = archetype;
         cardNames = new HashMap<>();
+    }
+
+    public Deck(){
+
     }
 
     public void addCard(int count, String name){
