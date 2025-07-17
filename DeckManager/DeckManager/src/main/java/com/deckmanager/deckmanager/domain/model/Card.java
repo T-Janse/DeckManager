@@ -2,16 +2,21 @@ package com.deckmanager.deckmanager.domain.model;
 
 import com.deckmanager.deckmanager.domain.model.dto.ForeignCardDto;
 import com.deckmanager.deckmanager.domain.model.enums.Language;
+import com.deckmanager.deckmanager.domain.model.enums.Mana;
 import lombok.Getter;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Getter
 public class Card {
 
     private final String name;
-    private final String manaCost;
-    private final double cmc;
+    private final HashMap<Mana, Integer> manaCost;
+    private final int cmc;
     private final String text;
     private final String type;
     private final String imageUrl;
@@ -19,7 +24,7 @@ public class Card {
 
     public Card(String name,
                 String manaCost,
-                double cmc,
+                int cmc,
                 String text,
                 String type,
                 String imageUrl,
@@ -36,7 +41,40 @@ public class Card {
             this.imageUrl = imageUrl;
             this.language = null;
         }
-        this.manaCost = manaCost;
+        int colorLess = 0;
+        int red = 0;
+        int green = 0;
+        int blue = 0;
+        int white = 0;
+        int black = 0;
+
+        Pattern pattern = Pattern.compile("\\{(.*?)\\}");
+        Matcher matcher = pattern.matcher(manaCost);
+
+        while (matcher.find()) {
+            String token = matcher.group(1);
+            if (token.matches("\\d+")) {
+                colorLess += Integer.parseInt(token);
+            } else if (token.equalsIgnoreCase("W")) {
+                white++;
+            }else if (token.equalsIgnoreCase("R")) {
+                red++;
+            }else if (token.equalsIgnoreCase("G")) {
+                green++;
+            }else if (token.equalsIgnoreCase("U")) {
+                blue++;
+            }else if (token.equalsIgnoreCase("B")) {
+                black++;
+            }
+        }
+
+        this.manaCost = new HashMap<>(Map.of(
+            Mana.RED, red,
+            Mana.GREEN, green,
+            Mana.BLUE, blue,
+            Mana.WHITE, white,
+            Mana.BLACK, black
+        ));
         this.cmc = cmc;
         this.type = type;
     }
