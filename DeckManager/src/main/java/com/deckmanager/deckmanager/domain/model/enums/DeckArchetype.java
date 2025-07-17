@@ -39,6 +39,10 @@ public enum DeckArchetype {
 
     WUBRG      // White + Blue + Black + Red + Green
     ;
+    /**
+     *
+     * @return Archetypetest
+     */
     public static DeckArchetype manaCostToArchetype(HashMap<Mana, Integer> manaCost) {
         Set<Mana> colorsPresent = manaCost.entrySet().stream()
                 .filter(entry -> entry.getValue() != null && entry.getValue() > 0)
