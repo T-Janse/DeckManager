@@ -4,9 +4,11 @@ WORKDIR /app
 
 COPY build.gradle settings.gradle* gradle.properties* /app/
 COPY src /app/src
+COPY gradlew gradlew
+COPY gradle/ gradle/
 
 RUN gradle build --no-daemon -x test
-RUN gradle generateJavaDoc
+RUN ./gradlew generateJavadoc
 
 # Stage 2: Run
 FROM eclipse-temurin:21-jdk
