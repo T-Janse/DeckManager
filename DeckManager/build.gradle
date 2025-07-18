@@ -42,10 +42,6 @@ tasks.register('generateJavadoc', Copy) {
     into "${projectDir.parent}/docs"
 }
 
-tasks.named('build') {
-    dependsOn 'generateJavadoc'
-}
-
 
 //tasks.named('test') {
 //    useJUnitPlatform()

@@ -6,6 +6,7 @@ COPY build.gradle settings.gradle* gradle.properties* /app/
 COPY src /app/src
 
 RUN gradle build --no-daemon -x test
+RUN gradle generateJavaDoc
 
 # Stage 2: Run
 FROM eclipse-temurin:21-jdk
