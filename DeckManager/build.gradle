@@ -36,10 +36,10 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-tasks.register('copyJavadoc', Copy) {
+tasks.register('generateJavadoc', Copy) {
     dependsOn javadoc
     from javadoc.destinationDir
-    into "$projectDir/docs"
+    into "${projectDir.parent}/docs"
 }
 
 
