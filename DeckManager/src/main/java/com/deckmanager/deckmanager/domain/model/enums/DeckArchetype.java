@@ -41,7 +41,7 @@ public enum DeckArchetype {
     ;
     /**
      *
-     * @return test4
+     * @return testPrecom
      */
     public static DeckArchetype manaCostToArchetype(HashMap<Mana, Integer> manaCost) {
         Set<Mana> colorsPresent = manaCost.entrySet().stream()
