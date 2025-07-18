@@ -1,2 +1,2 @@
 swagger:
-https:<IP>:<port>/swagger-ui/index.html
+https:IP:port/swagger-ui/index.html
