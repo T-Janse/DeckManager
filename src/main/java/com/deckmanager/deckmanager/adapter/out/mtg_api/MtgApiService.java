@@ -15,6 +15,13 @@ public class MtgApiService implements MtgApiRetrievalUseCase {
     private final String baseUrl = "https://api.magicthegathering.io/v1";
     private final RestTemplate restTemplate = new RestTemplate();
 
+    /**
+     * Outwards call to MTG API /cards endpoint
+     *
+     * @param name Name of the {@link Card}
+     * @param lang Language the card should be in
+     * @return First {@link Card} object from the {@link MtgApiResponse}
+     */
     @Override
     public Optional<Card> getCardByName(String name, Language lang) {
         String url = baseUrl + cardUrl + "?name=" + name;

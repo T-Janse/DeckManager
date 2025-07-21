@@ -39,9 +39,12 @@ public enum DeckArchetype {
 
     WUBRG      // White + Blue + Black + Red + Green
     ;
+
     /**
+     * Retrieve DeckArchetype based on mana cost
      *
-     * @return DeckArchetype calculated out of the manacost colors
+     * @param manaCost Mana cost as Mana mana: Integer amount
+     * @return Fitting Deck archetype
      */
     public static DeckArchetype manaCostToArchetype(HashMap<Mana, Integer> manaCost) {
         Set<Mana> colorsPresent = manaCost.entrySet().stream()

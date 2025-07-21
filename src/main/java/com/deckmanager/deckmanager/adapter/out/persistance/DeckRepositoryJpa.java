@@ -16,6 +16,11 @@ public class DeckRepositoryJpa implements DatabaseSaveUseCase {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * Saves a {@link Deck} to the database
+     *
+     * @param deck The Deck to save
+     */
     @Override
     @Transactional
     public void save(Deck deck) {
@@ -23,6 +28,12 @@ public class DeckRepositoryJpa implements DatabaseSaveUseCase {
         entityManager.merge(entity);
     }
 
+    /**
+     * Retrieve a {@link Deck} by its UUID
+     *
+     * @param id UUID of the deck
+     * @return Deck by UUID, or null if no Deck found
+     */
     @Override
     public Deck findById(UUID id) {
         DeckEntity entity = entityManager.find(DeckEntity.class, id);
@@ -30,6 +41,12 @@ public class DeckRepositoryJpa implements DatabaseSaveUseCase {
         return toDomain(entity);
     }
 
+    /**
+     * Flatten a {@link Deck} to a {@link DeckEntity} for storing
+     *
+     * @param deck Deck to convert
+     * @return the Flattened Deck in {@link DeckEntity} form
+     */
     private DeckEntity toEntity(Deck deck) {
         DeckEntity entity = new DeckEntity();
         entity.setId(deck.getId());
@@ -47,6 +64,12 @@ public class DeckRepositoryJpa implements DatabaseSaveUseCase {
         return entity;
     }
 
+    /**
+     * Retrieve {@link Deck} from a flat {@link DeckEntity}
+     *
+     * @param entity {@link DeckEntity} to convert
+     * @return {@link Deck} object
+     */
     private Deck toDomain(DeckEntity entity) {
         throw new IllegalStateException("Not implemented yet");
     }

@@ -19,6 +19,12 @@ public class MtgApiResponse {
     @JsonProperty("cards")
     private List<CardDto> cards;
 
+    /**
+     * Retrieve first card of an MTG API /cards response
+     *
+     * @param lang The language the card should be in
+     * @return First {@link Card} object in an MTG API /cards response
+     */
     public Optional<Card> getFirstResultCard(Language lang) {
         if (cards == null || cards.isEmpty()) {
             return Optional.empty();

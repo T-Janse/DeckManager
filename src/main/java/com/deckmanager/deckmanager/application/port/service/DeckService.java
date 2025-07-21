@@ -24,6 +24,16 @@ public class DeckService implements UploadDeckUseCase, MtgApiRetrievalUseCase {
         this.mtgApiService = new MtgApiService();
     }
 
+    /**
+     * Implements {@link UploadDeckUseCase}
+     * Upload {@link Deck} to Database
+     *
+     * @param deckText The Deck in Textfile format
+     * @param commander The name of the Deck's commander
+     * @param lang The language of the Deck in the format of 'French'
+     * @return UUID of the uploaded Deck
+     * @throws IncorrectDeckFileLayout deckText does not follow proper formatting
+     */
     @Override
     public UUID upload(String deckText, String commander, Language lang) throws IncorrectDeckFileLayout {
         Card commanderCard = getCardByName(commander, lang).orElseThrow(IncorrectDeckFileLayout::new);
@@ -50,6 +60,14 @@ public class DeckService implements UploadDeckUseCase, MtgApiRetrievalUseCase {
         return deck.getId();
     }
 
+    /**
+     * Implements {@link MtgApiRetrievalUseCase}
+     * Get {@link Card} from MTG API by name
+     *
+     * @param name Name of the Card to retrieve
+     * @param lang Language the Card should be in the format of 'French'
+     * @return {@link Card} object if found by name
+     */
     @Override
     public Optional<Card> getCardByName(String name, Language lang) {
         return mtgApiService.getCardByName(name, lang);

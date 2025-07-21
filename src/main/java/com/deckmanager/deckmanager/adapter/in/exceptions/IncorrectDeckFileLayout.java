@@ -1,5 +1,10 @@
 package com.deckmanager.deckmanager.adapter.in.exceptions;
 
+/**
+ * Exception thrown for Decks uploaded using a layout other than
+ * "1 Access Tunnel"
+ * "1 Ajani, Sleeper Agent"
+ */
 public class IncorrectDeckFileLayout extends RuntimeException {
     public IncorrectDeckFileLayout() {
         super("Incorrect Deck File Layout. Layout should be as such:" +

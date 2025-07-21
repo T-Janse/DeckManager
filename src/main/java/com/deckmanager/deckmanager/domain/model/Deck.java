@@ -27,6 +27,12 @@ public class Deck {
 
     }
 
+    /**
+     * Adds a {@link Card} to an existing {@link Deck}
+     *
+     * @param count amount of the Card in the Deck
+     * @param name Name of the Card
+     */
     public void addCard(int count, String name){
         cardNames.put(name, count);
     }
