@@ -8,7 +8,6 @@ COPY gradlew gradlew
 COPY gradle/ gradle/
 
 RUN gradle build --no-daemon -x test
-RUN ./gradlew generateJavadoc
 
 # Stage 2: Run
 FROM eclipse-temurin:21-jdk
